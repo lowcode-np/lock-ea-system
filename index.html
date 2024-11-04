@@ -3,10 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting...</title>
-  <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbzLdShteg0gunGsKssCBXLf1ksvHyrvN0sswVxkxB9qOyLHApbrvcapBb55UIidjZfYow/exec">
+  <style>
+    /* ตั้งค่า iframe ให้ครอบคลุมทั้งหน้าจอ */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-  <p>If you are not redirected, <a href="https://script.google.com/macros/s/AKfycbzLdShteg0gunGsKssCBXLf1ksvHyrvN0sswVxkxB9qOyLHApbrvcapBb55UIidjZfYow/exec">click here</a>.</p>
+  <iframe src="https://script.google.com/macros/s/AKfycbzLdShteg0gunGsKssCBXLf1ksvHyrvN0sswVxkxB9qOyLHApbrvcapBb55UIidjZfYow/exec"></iframe>
 </body>
 </html>
