@@ -21,13 +21,27 @@
       height: 100%;
       border: none;
     }
+    #installButton {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <iframe src="https://script.google.com/macros/s/AKfycbwaqAcfxH5QzjDPTV3RzuvXzgxMOlfD85XdcmLdchi-KBYBu0-jsTQ7Y_EKWhdZKGCNNA/exec"></iframe>
   
   <!-- ปุ่มติดตั้ง PWA -->
-  <button id="installButton" style="display: none;">ติดตั้งแอป</button>
+  <button id="installButton">ติดตั้งแอป</button>
   
   <!-- โค้ดสำหรับลงทะเบียน Service Worker -->
   <script>
