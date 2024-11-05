@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1024, user-scalable=no">
+  <meta name="viewport" id="viewportMeta" content="width=1024, user-scalable=no">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#000000">
   <title>Lock EA System</title>
@@ -29,8 +29,22 @@
   <button id="installButton" style="display: none;">ติดตั้งแอป</button>
     <!-- โค้ดสำหรับลงทะเบียน Service Worker -->
   <script>
-        let deferredPrompt;
+  let deferredPrompt;
+  function updateViewport() {
+    const viewportMeta = document.getElementById("viewportMeta");
+    if (window.innerWidth <= 768) {
+      viewportMeta.setAttribute("content", "width=480, user-scalable=no");
+    } else {
+      viewportMeta.setAttribute("content", "width=1024, user-scalable=no");
+    }
+  }
 
+  // เรียกใช้เมื่อโหลดหน้า
+  window.addEventListener("load", updateViewport);
+
+  // เรียกใช้เมื่อมีการเปลี่ยนขนาดหน้าจอ
+  window.addEventListener("resize", updateViewport);
+    
     // จับ event ก่อนแสดงการติดตั้ง
     window.addEventListener('beforeinstallprompt', (e) => {
       // ป้องกันเบราว์เซอร์แสดง prompt โดยอัตโนมัติ
