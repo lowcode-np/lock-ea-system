@@ -1,0 +1,20 @@
+{
+  "name": "Lock EA System",
+  "short_name": "L.EA.S",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": linear-gradient(135deg, #4a5f7a, #2d3748);,
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
