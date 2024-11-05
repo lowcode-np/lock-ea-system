@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" id="viewportMeta" content="width=device-width, user-scalable=no">
+  <meta name="viewport" id="viewportMeta" content="width=device-width, user-scalable=yes">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#000000">
   <title>Lock EA System</title>
@@ -48,9 +48,9 @@
     function updateViewport() {
       const viewportMeta = document.getElementById("viewportMeta");
       if (window.innerWidth <= 768) {
-        viewportMeta.setAttribute("content", "width=960, user-scalable=no");
+        viewportMeta.setAttribute("content", "width=960, user-scalable=yes");
       } else {
-        viewportMeta.setAttribute("content", "width=1024, user-scalable=no");
+        viewportMeta.setAttribute("content", "width=1024, user-scalable=yes");
       }
     }
 
