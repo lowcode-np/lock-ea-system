@@ -67,16 +67,15 @@
       e.preventDefault(); // ป้องกันเบราว์เซอร์แสดง prompt โดยอัตโนมัติ
       deferredPrompt = e;
 
-      // ตรวจสอบว่าผู้ใช้ติดตั้งแอปแล้วหรือยัง และเป็นอุปกรณ์มือถือเท่านั้น
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      if (!window.matchMedia('(display-mode: standalone)').matches && isMobile) {
+      // ตรวจสอบว่าผู้ใช้ติดตั้งแอปแล้วหรือยัง
+      if (!window.matchMedia('(display-mode: standalone)').matches) {
         const installButton = document.getElementById('installButton');
         installButton.style.display = 'block';
 
         // ซ่อนปุ่มติดตั้งหลังจาก 30 วินาที
         setTimeout(() => {
           installButton.style.display = 'none';
-        }, 10000); // 30000 มิลลิวินาที = 30 วินาที
+        }, 30000); // 30000 มิลลิวินาที = 30 วินาที
 
         installButton.addEventListener('click', () => {
           installButton.style.display = 'none';
