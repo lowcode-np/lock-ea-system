@@ -27,9 +27,9 @@
   <iframe src="https://script.google.com/macros/s/AKfycbzLdShteg0gunGsKssCBXLf1ksvHyrvN0sswVxkxB9qOyLHApbrvcapBb55UIidjZfYow/exec"></iframe>
     <!-- ปุ่มติดตั้ง PWA -->
   <button id="installButton" style="display: none;">ติดตั้งแอป</button>
-
+    <!-- โค้ดสำหรับลงทะเบียน Service Worker -->
   <script>
-    let deferredPrompt;
+        let deferredPrompt;
 
     // จับ event ก่อนแสดงการติดตั้ง
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -59,9 +59,7 @@
         });
       });
     });
-  </script>
-    <!-- โค้ดสำหรับลงทะเบียน Service Worker -->
-  <script>
+    
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
