@@ -25,5 +25,20 @@
 </head>
 <body>
   <iframe src="https://script.google.com/macros/s/AKfycbzLdShteg0gunGsKssCBXLf1ksvHyrvN0sswVxkxB9qOyLHApbrvcapBb55UIidjZfYow/exec"></iframe>
+    <!-- โค้ดสำหรับลงทะเบียน Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then((registration) => {
+            console.log("Service Worker registered with scope:", registration.scope);
+          })
+          .catch((error) => {
+            console.log("Service Worker registration failed:", error);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
