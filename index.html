@@ -6,36 +6,36 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#000000">
   <title>Lock EA System</title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-  }
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-  #installButton {
-    display: none;
-    position: fixed;
-    bottom: 50px; /* ปรับให้เป็น 30px เพื่อขยับขึ้น */
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-</style>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    #installButton {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <iframe src="https://script.google.com/macros/s/AKfycbwaqAcfxH5QzjDPTV3RzuvXzgxMOlfD85XdcmLdchi-KBYBu0-jsTQ7Y_EKWhdZKGCNNA/exec"></iframe>
@@ -61,7 +61,7 @@
     window.addEventListener("resize", updateViewport);
 
     let deferredPrompt;
-    
+
     // ตรวจสอบว่ามีการติดตั้ง PWA แล้วหรือไม่
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault(); // ป้องกันเบราว์เซอร์แสดง prompt โดยอัตโนมัติ
@@ -71,6 +71,11 @@
       if (!window.matchMedia('(display-mode: standalone)').matches) {
         const installButton = document.getElementById('installButton');
         installButton.style.display = 'block';
+
+        // ซ่อนปุ่มติดตั้งหลังจาก 30 วินาที
+        setTimeout(() => {
+          installButton.style.display = 'none';
+        }, 30000); // 30000 มิลลิวินาที = 30 วินาที
 
         installButton.addEventListener('click', () => {
           installButton.style.display = 'none';
