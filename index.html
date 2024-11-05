@@ -2,26 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=1024"> <!-- กำหนดความกว้างคงที่ให้เหมือนโหมด desktop -->
   <title>Lock EA System</title>
   <style>
-    /* ตั้งค่าให้ iframe เป็นกรอบตรงกลางหน้าจอ */
+    /* ตั้งค่าให้ iframe ครอบคลุมทั้งหน้าจอโดยไม่มีขอบ */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #f0f0f0;
       overflow: hidden;
     }
     iframe {
-      width: 80vw; /* กำหนดความกว้างของ iframe */
-      height: 90vh; /* กำหนดความสูงของ iframe */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       border: none; /* ซ่อนขอบของ iframe */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* เพิ่มเงารอบๆ iframe */
-      border-radius: 8px; /* มุมมน */
     }
   </style>
 </head>
