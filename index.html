@@ -25,57 +25,56 @@
 </head>
 <body>
   <iframe src="https://script.google.com/macros/s/AKfycbwaqAcfxH5QzjDPTV3RzuvXzgxMOlfD85XdcmLdchi-KBYBu0-jsTQ7Y_EKWhdZKGCNNA/exec"></iframe>
-    <!-- ปุ่มติดตั้ง PWA -->
+  
+  <!-- ปุ่มติดตั้ง PWA -->
   <button id="installButton" style="display: none;">ติดตั้งแอป</button>
   
-    <!-- โค้ดสำหรับลงทะเบียน Service Worker -->
+  <!-- โค้ดสำหรับลงทะเบียน Service Worker -->
   <script>
-    
-function updateViewport() {
-    const viewportMeta = document.getElementById("viewportMeta");
-    if (window.innerWidth <= 768) {
-      viewportMeta.setAttribute("content", "width=960, user-scalable=no");
-    } else {
-      viewportMeta.setAttribute("content", "width=1024, user-scalable=no");
+    function updateViewport() {
+      const viewportMeta = document.getElementById("viewportMeta");
+      if (window.innerWidth <= 768) {
+        viewportMeta.setAttribute("content", "width=960, user-scalable=no");
+      } else {
+        viewportMeta.setAttribute("content", "width=1024, user-scalable=no");
+      }
     }
-  }
 
-  // เรียกใช้เมื่อโหลดหน้า
-  window.addEventListener("load", updateViewport);
+    // เรียกใช้เมื่อโหลดหน้า
+    window.addEventListener("load", updateViewport);
 
-  // เรียกใช้เมื่อมีการเปลี่ยนขนาดหน้าจอ
-  window.addEventListener("resize", updateViewport);
-    
+    // เรียกใช้เมื่อมีการเปลี่ยนขนาดหน้าจอ
+    window.addEventListener("resize", updateViewport);
+
     let deferredPrompt;
-    // จับ event ก่อนแสดงการติดตั้ง
-    window.addEventListener('beforeinstallprompt', (e) => {
-      // ป้องกันเบราว์เซอร์แสดง prompt โดยอัตโนมัติ
-      e.preventDefault();
-      // เก็บ event ไว้ใช้งานทีหลัง
-      deferredPrompt = e;
-      // แสดงปุ่มติดตั้ง
-      const installButton = document.getElementById('installButton');
-      installButton.style.display = 'block';
-
-      // เมื่อผู้ใช้กดปุ่มติดตั้ง
-      installButton.addEventListener('click', () => {
-        // ซ่อนปุ่มติดตั้ง
-        installButton.style.display = 'none';
-        // แสดง prompt ให้ผู้ใช้เลือกติดตั้ง
-        deferredPrompt.prompt();
-        
-        // ตรวจสอบการตอบกลับของผู้ใช้
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-          } else {
-            console.log('User dismissed the install prompt');
-          }
-          deferredPrompt = null;
-        });
-      });
-    });
     
+    // ตรวจสอบว่ามีการติดตั้ง PWA แล้วหรือไม่
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault(); // ป้องกันเบราว์เซอร์แสดง prompt โดยอัตโนมัติ
+      deferredPrompt = e;
+
+      // ตรวจสอบว่าผู้ใช้ติดตั้งแอปแล้วหรือยัง
+      if (!window.matchMedia('(display-mode: standalone)').matches) {
+        const installButton = document.getElementById('installButton');
+        installButton.style.display = 'block';
+
+        installButton.addEventListener('click', () => {
+          installButton.style.display = 'none';
+          deferredPrompt.prompt(); // แสดง prompt ให้ผู้ใช้เลือกติดตั้ง
+
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the install prompt');
+            } else {
+              console.log('User dismissed the install prompt');
+            }
+            deferredPrompt = null;
+          });
+        });
+      }
+    });
+
+    // ลงทะเบียน Service Worker
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
