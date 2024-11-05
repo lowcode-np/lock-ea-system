@@ -67,8 +67,9 @@
       e.preventDefault(); // ป้องกันเบราว์เซอร์แสดง prompt โดยอัตโนมัติ
       deferredPrompt = e;
 
-      // ตรวจสอบว่าผู้ใช้ติดตั้งแอปแล้วหรือยัง
-      if (!window.matchMedia('(display-mode: standalone)').matches) {
+      // ตรวจสอบว่าผู้ใช้ติดตั้งแอปแล้วหรือยัง และเป็นอุปกรณ์มือถือเท่านั้น
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (!window.matchMedia('(display-mode: standalone)').matches && isMobile) {
         const installButton = document.getElementById('installButton');
         installButton.style.display = 'block';
 
