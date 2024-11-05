@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" id="viewportMeta" content="width=1024, user-scalable=no">
+  <meta name="viewport" id="viewportMeta" content="width=device-width, user-scalable=no">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#000000">
   <title>Lock EA System</title>
@@ -27,10 +27,11 @@
   <iframe src="https://script.google.com/macros/s/AKfycbwaqAcfxH5QzjDPTV3RzuvXzgxMOlfD85XdcmLdchi-KBYBu0-jsTQ7Y_EKWhdZKGCNNA/exec"></iframe>
     <!-- ปุ่มติดตั้ง PWA -->
   <button id="installButton" style="display: none;">ติดตั้งแอป</button>
+  
     <!-- โค้ดสำหรับลงทะเบียน Service Worker -->
   <script>
-  let deferredPrompt;
-  function updateViewport() {
+    
+function updateViewport() {
     const viewportMeta = document.getElementById("viewportMeta");
     if (window.innerWidth <= 768) {
       viewportMeta.setAttribute("content", "width=320, user-scalable=no");
@@ -45,6 +46,7 @@
   // เรียกใช้เมื่อมีการเปลี่ยนขนาดหน้าจอ
   window.addEventListener("resize", updateViewport);
     
+    let deferredPrompt;
     // จับ event ก่อนแสดงการติดตั้ง
     window.addEventListener('beforeinstallprompt', (e) => {
       // ป้องกันเบราว์เซอร์แสดง prompt โดยอัตโนมัติ
