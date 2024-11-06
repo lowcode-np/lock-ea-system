@@ -1,5 +1,4 @@
 // script.js
-
 document.addEventListener("DOMContentLoaded", () => {
   const iframe = document.getElementById("secureFrame");
   iframe.style.visibility = "visible";
@@ -18,16 +17,24 @@ window.addEventListener("load", updateViewport);
 window.addEventListener("resize", updateViewport);
 
 let deferredPrompt;
+const installButton = document.getElementById('installButton');
+
 window.addEventListener('beforeinstallprompt', (e) => {
-  console.log('beforeinstallprompt event fired'); // ตรวจสอบว่าอีเวนต์นี้ถูกเรียกหรือไม่
+  console.log('beforeinstallprompt event fired');
   e.preventDefault();
   deferredPrompt = e;
+  installButton.style.display = 'block';
+  setTimeout(() => {
+    installButton.style.display = 'none';
+  }, 10000);
+});
 
-  // แสดงการแจ้งเตือนติดตั้งอัตโนมัติ
+installButton.addEventListener('click', () => {
+  installButton.style.display = 'none';
+
   if (deferredPrompt) {
     deferredPrompt.prompt();
 
-    // ตรวจสอบผลลัพธ์ที่ผู้ใช้เลือก
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
         console.log('User accepted the install prompt');
@@ -36,8 +43,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
       }
       deferredPrompt = null;
     });
-  } else {
-    console.log('Deferred prompt is not available');
   }
 });
 
