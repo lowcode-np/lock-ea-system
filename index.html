@@ -14,7 +14,7 @@
       overflow: hidden;
     }
     iframe {
-      display: none; /* ซ่อน iframe ในหน้า */
+      visibility: hidden; /* ซ่อน iframe จากการมองเห็น */
       position: absolute;
       top: 0;
       left: 0;
@@ -39,7 +39,12 @@
   </style>
 </head>
 <body>
+  <!-- iframe ที่ต้องการแสดง -->
+  <iframe id="secureFrame" src="https://script.google.com/macros/s/AKfycbwaqAcfxH5QzjDPTV3RzuvXzgxMOlfD85XdcmLdchi-KBYBu0-jsTQ7Y_EKWhdZKGCNNA/exec"></iframe>
+  
   <button id="installButton">ติดตั้งแอป</button>
+  
+  <!-- เชื่อมต่อ JavaScript ไฟล์ -->
   <script src="script.js"></script>
 </body>
 </html>
