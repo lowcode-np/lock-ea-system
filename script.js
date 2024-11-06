@@ -1,11 +1,8 @@
 // script.js
 
 document.addEventListener("DOMContentLoaded", () => {
-  // สร้าง iframe แบบ dynamic
-  const iframe = document.createElement("iframe");
-  iframe.src = "https://script.google.com/macros/s/AKfycbwaqAcfxH5QzjDPTV3RzuvXzgxMOlfD85XdcmLdchi-KBYBu0-jsTQ7Y_EKWhdZKGCNNA/exec";
-  iframe.style.display = "none"; // ป้องกันการมองเห็น
-  document.body.appendChild(iframe);
+  const iframe = document.getElementById("secureFrame");
+  iframe.style.visibility = "visible"; // แสดง iframe เมื่อโหลดหน้าเสร็จ
 });
 
 function updateViewport() {
