@@ -19,19 +19,26 @@ window.addEventListener("resize", updateViewport);
 
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
+  console.log('beforeinstallprompt event fired'); // ตรวจสอบว่าอีเวนต์นี้ถูกเรียกหรือไม่
   e.preventDefault();
   deferredPrompt = e;
 
-  deferredPrompt.prompt();
+  // แสดงการแจ้งเตือนติดตั้งอัตโนมัติ
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
 
-  deferredPrompt.userChoice.then((choiceResult) => {
-    if (choiceResult.outcome === 'accepted') {
-      console.log('User accepted the install prompt');
-    } else {
-      console.log('User dismissed the install prompt');
-    }
-    deferredPrompt = null;
-  });
+    // ตรวจสอบผลลัพธ์ที่ผู้ใช้เลือก
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+      deferredPrompt = null;
+    });
+  } else {
+    console.log('Deferred prompt is not available');
+  }
 });
 
 if ("serviceWorker" in navigator) {
