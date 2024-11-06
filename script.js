@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const iframe = document.getElementById("secureFrame");
-  iframe.style.visibility = "visible"; // แสดง iframe เมื่อโหลดหน้าเสร็จ
+  iframe.style.visibility = "visible";
 });
 
 function updateViewport() {
